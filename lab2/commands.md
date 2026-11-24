@@ -1,8 +1,8 @@
 ## **1. Підготовка середовища**
-1. $ docker --version
+1. $ docker --version  
 Docker version 29.9.3, build 5457199
 
-2. $ docker info
+2. $ docker info  
 Client:
  Version:    29.9.3
  Context:    desktop-linux
@@ -54,7 +54,6 @@ Inc.)
   scout: Docker Scout (Docker Inc.)
     Version:  v1.28.0
     Path:     C:\Users\galal\.docker\cli-plugins\docker-scout.exe
-
 Server:
  Containers: 0
   Running: 0
@@ -111,7 +110,7 @@ Server:
  Firewall Backend: iptables
 
 ## **2. Запуск вебсервера**
-3. $ docker run -d -p 8080:80 --name alex-webserver nginx:1.30
+3. $ docker run -d -p 8080:80 --name alex-webserver nginx:1.30  
 Unable to find image 'nginx:1.30' locally
 1.30: Pulling from library/nginx
 aa560e7d269a: Pull complete
@@ -127,11 +126,11 @@ Digest: sha256:7fad6c0dff97965adbddf28027d934b111fc0221a554315dc274712f3fba24d3
 Status: Downloaded newer image for nginx:1.30
 5e295ddf86832f40da14a05fae768927d355d7dc44cf102224b2bd0bbc26e512
 
-4. $ docker ps
+4. $ docker ps  
 CONTAINER ID   IMAGE        COMMAND                  CREATED          STATUS          PORTS                                     NAMES
 5e295ddf8683   nginx:1.30   "/docker-entrypoint.…"   54 seconds ago   Up 54 seconds   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   alex-webserver
 
-5. $ curl -i http://localhost:8080
+5. $ curl -i http://localhost:8080  
 HTTP/1.1 200 OK
 Server: nginx/1.30.7
 Date: Mon, 23 Nov 2026 12:12:53 GMT
@@ -169,8 +168,9 @@ security features and capabilities please refer to
 <p><em>Thank you for using nginx.</em></p>
 </body>
 </html>
+
 ## **3. Запуск СКБД**
-6. $ docker run -d --name alex-database -e MYSQL_ROOT_PASSWORD=lab2pass mysql:8.4
+6. $ docker run -d --name alex-database -e MYSQL_ROOT_PASSWORD=lab2pass mysql:8.4  
 Unable to find image 'mysql:8.4' locally
 8.4: Pulling from library/mysql
 0b3d5697e820: Pull complete
@@ -189,11 +189,11 @@ Digest: sha256:a81d043930e51745522bd5c430961cf8286f0a23f0a9a2a6e0108f7ea71b0902
 Status: Downloaded newer image for mysql:8.4
 693fd2bcefacdf6a5d3b224a5afee0fa6f3cd2a408218a3f05e6bf39dcb2b8eb
 
-7. $ docker ps
+7. $ docker ps  
 CONTAINER ID   IMAGE       COMMAND                  CREATED              STATUS              PORTS                 NAMES
 693fd2bcefac   mysql:8.4   "docker-entrypoint.s…"   About a minute ago   Up About a minute   3306/tcp, 33060/tcp   alex-database
 
-8. $ docker logs alex-database
+8. $ docker logs alex-database  
 2026-11-23 17:14:20+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.4.13-1.el9 started.
 2026-11-23 17:14:21+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
 2026-11-23 17:14:21+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.4.13-1.el9 started.
@@ -245,7 +245,7 @@ er choosing a different directory.
 
 
 ## **4. Інтерактивний контейнер операційної системи**
-9. $ docker run -it --name alex-os alpine:3.24 /bin/sh
+9. $ docker run -it --name alex-os alpine:3.24 /bin/sh  
 Unable to find image 'alpine:3.24' locally
 3.24: Pulling from library/alpine
 881fc932939e: Pull complete
@@ -256,10 +256,10 @@ Status: Downloaded newer image for alpine:3.24
 docker: Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container
 process: error during container init: exec: "D:/Program Files/Git/usr/bin/sh": stat D:/Program Files/Git/usr/bin/sh: no such file or directory
 
-10. $/ # ls /
+10. / # ls /  
 bin    dev    etc    home   lib    media  mnt    opt    proc   root   run    sbin   srv    sys    tmp    usr    var
 
-11. / # cat /etc/os-release
+11. / # cat /etc/os-release  
 NAME="Alpine Linux"
 ID=alpine
 VERSION_ID=3.24.4
@@ -267,25 +267,25 @@ PRETTY_NAME="Alpine Linux v3.24"
 HOME_URL="https://alpinelinux.org/"
 BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"
 
-12. / # exit
+12. / # exit  
 
 ## **5. Фоновий контейнер і docker exec**
-13. docker run -d --name alex-os-d alpine:3.24 sleep infinity
+13. docker run -d --name alex-os-d alpine:3.24 sleep infinity  
 064691830c6ba058856520f565164d2dcb4d668618f7e4ef308b8170ebb0ea0f
 
-14. / # ls /
+14. / # ls /  
 bin    etc    lib    mnt    proc   run    srv    tmp    var dev    home   media  opt    root   sbin   sys    usr
 
-15. / # exit
+15. / # exit  
 What's next:
     Try Docker Debug for seamless, persistent debugging tools in any container or image → docker debug alex-os-d
     Learn more at https://docs.docker.com/go/debug-cli/
 
-16. docker ps
+16. $ docker ps  
 CONTAINER ID   IMAGE         COMMAND            CREATED         STATUS         PORTS     NAMES
 064691830c6b   alpine:3.24   "sleep infinity"   6 minutes ago   Up 6 minutes             alex-os-d
 
-17. docker ps -a
+17. $ docker ps -a  
 CONTAINER ID   IMAGE         COMMAND                  CREATED             STATUS                      PORTS     NAMES
 064691830c6b   alpine:3.24   "sleep infinity"         6 minutes ago       Up 6 minutes                          alex-os-d
 0fe597e4e620   alpine:3.24   "//bin/sh"               39 minutes ago      Exited (0) 9 minutes ago              alex-os
@@ -293,7 +293,7 @@ CONTAINER ID   IMAGE         COMMAND                  CREATED             STATUS
 5e295ddf8683   nginx:1.30    "/docker-entrypoint.…"   7 hours ago         Exited (0) 6 hours ago                alex-webserver
 
 ## **6. Дослідження контейнера**
-18. docker inspect alex-webserver
+18. $ docker inspect alex-webserver  
 [
     {
         "Id": "5e295ddf86832f40da14a05fae768927d355d7dc44cf102224b2bd0bbc26e512",
@@ -523,10 +523,10 @@ CONTAINER ID   IMAGE         COMMAND                  CREATED             STATUS
 ]
 
 
-19. docker inspect --format "{{.State.Status}} {{.Config.Image}}" alex-webserver
+19. $ docker inspect --format "{{.State.Status}} {{.Config.Image}}" alex-webserver  
 exited nginx:1.30
 
-20. docker images
+20. $ docker images  
 i Info →   U  In Use
 IMAGE         ID             DISK USAGE   CONTENT SIZE   EXTRA
 alpine:3.24   f59abe656b69         13MB         3.94MB    U
@@ -534,28 +534,28 @@ mysql:8.4     a81d043930e5       1.12GB          254MB    U
 nginx:1.30    7fad6c0dff97        242MB         66.5MB    U
 
 ## **7. Завершення роботи з ресурсами**
-21. docker stop alex-webserver
+21. $ docker stop alex-webserver  
 alex-webserver
 
-22. docker rm alex-webserver
+22. $ docker rm alex-webserver  
 alex-webserver
 
-23. docker stop alex-database
+23. $ docker stop alex-database  
 alex-database
 
-24. docker stop alex-database alex-os-d
+24. $ docker stop alex-database alex-os-d  
 alex-database
 alex-os-d
 
-25. docker rm alex-database alex-os alex-os-d
+25. $ docker rm alex-database alex-os alex-os-d  
 alex-database
 alex-os
 alex-os-d
 
-26. docker ps -a
+26. $ docker ps -a  
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 
-27. docker rmi nginx:1.30 mysql:8.4 alpine:3.24
+27. $ docker rmi nginx:1.30 mysql:8.4 alpine:3.24  
 Untagged: nginx:1.30
 Deleted: sha256:7fad6c0dff97965adbddf28027d934b111fc0221a554315dc274712f3fba24d3
 Untagged: mysql:8.4
@@ -563,6 +563,6 @@ Deleted: sha256:a81d043930e51745522bd5c430961cf8286f0a23f0a9a2a6e0108f7ea71b0902
 Untagged: alpine:3.24
 Deleted: sha256:f59abe656b692d901e184be3445e084786602108599d2a51d229c0f5a48c71bf
 
-28. docker images
+28. $ docker images  
 i Info →   U  In Use
 IMAGE   ID             DISK USAGE   CONTENT SIZE   EXTRA
